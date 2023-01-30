@@ -2,19 +2,31 @@ import { useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
 function App() {
 
   return (
+  
+      <Container className='my-4'>
 
-    <Routes>
-       
-        <Route path='/Home' element={ <h1>Vocabulary brother</h1> } />
-        <Route path='/Me' element={ <h1>Me</h1> } />
-        <Route path='*' element={ <Navigate to={'/'} /> } />
+        <Routes>
+          
+            <Route path='/home' element={ <h1>Home</h1> } />
+            <Route path='/new' element={ <h1>New</h1> } />
+            
+            <Route path='/:id'>
 
-    </Routes>
-   
+                <Route index element={<h1>Show</h1>} />
+                <Route path='edit' element={<h1>Edit</h1>} />
+
+            </Route>
+
+            <Route path='*' element={ <Navigate to={'/'} /> } />
+
+        </Routes>
+
+      </Container>
 
   )
 }
