@@ -1,11 +1,18 @@
 import React from 'react'
+import FormNote from './FormNote'
 
 const NewNote = () => {
 
-  return (
+    return (
 
-    <div>NewNote</div>
-    
+      <>
+
+        <h1 className='text-center'>New Note</h1>
+        
+            <FormNote />
+            
+      </>
+
   )
 }
 
