@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NewNote from './NewNote';
 import useLocalStorage from './useLocalStorage';
+import {v4 as uuidV4} from 'uuid';  
 
 
   export type Note = {
@@ -50,6 +51,7 @@ function App() {
   const [notes, setNotes] = useLocalStorage<NoteRaw[]>('NOTES', []);
   const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
 
+
   const [noteWithTag, setNoteWithTag] = useMemo( () => {
 
     return notes.map(note => {
@@ -59,6 +61,18 @@ function App() {
     })
 
   }, [notes, tags]);  
+
+
+  const CreateNote = function( { tags, ...data }: NoteData) {
+
+    setNotes( previousNotes => {
+
+      return [...previousNotes, {...data, id: uuidV4(), tagId: tags.map(tag => tag.id) } ]
+
+    } )
+
+  }
+
 
   return (
   
