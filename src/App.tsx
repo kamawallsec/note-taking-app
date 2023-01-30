@@ -31,6 +31,8 @@ import NewNote from './NewNote';
 
 function App() {
 
+  const [notes, setNotes] = useLocalStorage<NoteRaw[]>('notes', []);
+
   return (
   
       <Container className='my-4'>
