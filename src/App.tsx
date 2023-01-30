@@ -4,7 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NewNote from './NewNote';
+import useLocalStorage from './useLocalStorage';
 
+
+  export type Note = {
+
+    id: string,
+
+  } & NoteData     // id to the NoteData
 
   export type NoteData = {
 
@@ -21,17 +28,27 @@ import NewNote from './NewNote';
 
   }
 
-  export type Note = {
+
+  export type NoteRaw = {
 
     id: string,
 
-  } & NoteData     // id to the NoteData
+  }
+
+  export type NoteRawData = {
+
+    title: string,
+    markdown: string,
+    tagId: string[],
+
+  }
 
 
 
 function App() {
 
-  const [notes, setNotes] = useLocalStorage<NoteRaw[]>('notes', []);
+  const [notes, setNotes] = useLocalStorage<NoteRaw[]>('NOTES', []);
+  const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
 
   return (
   
