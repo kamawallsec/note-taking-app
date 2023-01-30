@@ -54,7 +54,15 @@ const FormNote = ({ onSubmit }: NoteFormProps) => {
                     <Form.Group controlId='tags'>
 
                         <Form.Label>Note Tags</Form.Label>
-                        <CreatableReactSelect isMulti />
+
+                        <CreatableReactSelect value={selectTags.map((tag) => {
+                            return {label: tag.label, value: tag.id}
+                        })}  onChange={tags => {
+                            setSelectTags(tags.map((tag) => {
+                                return {label: tag.label, id: tag.value}     // convert or set tags to label and id
+                            }))
+                        }}
+                          isMulti />
 
                     </Form.Group>
 
