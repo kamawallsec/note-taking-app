@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -33,7 +33,7 @@ import useLocalStorage from './useLocalStorage';
 
     id: string,
 
-  }
+  } & NoteRawData
 
   export type NoteRawData = {
 
@@ -49,6 +49,16 @@ function App() {
 
   const [notes, setNotes] = useLocalStorage<NoteRaw[]>('NOTES', []);
   const [tags, setTags] = useLocalStorage<Tag[]>('TAGS', []);
+
+  const [noteWithTag, setNoteWithTag] = useMemo( () => {
+
+    return notes.map(note => {
+
+      return {...note, tags: tags.filter( t => note.tagId.includes(t.id))};
+
+    })
+
+  }, [notes, tags]);  
 
   return (
   
