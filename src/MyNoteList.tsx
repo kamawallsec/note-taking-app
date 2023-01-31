@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Button, Col, Row, Stack, Form, Card } from 'react-bootstrap'
+import { Button, Col, Row, Stack, Form, Card, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select/creatable'
 import { Tag } from './App'
@@ -101,7 +101,7 @@ const MyNoteList = ({ tagsAvailable, notes }:MyNoteListProps ) => {
         </Form>
 
 
-        <Row xs={1} sm={2} lg={3} xl={4} gap={4}>
+        <Row xs={1} sm={2} lg={3} xl={4} className='g-4'>
 
             {filterNotes.map(note => {
                 return <Col key={note.id}>
@@ -124,7 +124,18 @@ const NoteCard = function({ id, title, tags }: SimpNote) {
 
     return <Card as = {Link} to={`/${id}`} className={` h-100 text-reset text-decoration-none ${styles.cardStyle} `}>
 
-        <Card.Body></Card.Body>
+        <Card.Body className='bg-dark text-light'>
+
+            <Stack gap={4} className='h-100 align-items-center justify-content-center'>
+                <span className='fs-4'>{title}</span>
+                {tags.length > 0 && (
+                    <Stack gap={2} direction='horizontal' className='justify-content-center flex-wrap'>
+                       
+                    </Stack>
+                )}
+            </Stack>
+
+        </Card.Body>
 
     </Card>
 
