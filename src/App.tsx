@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap';
 import NewNote from './NewNote';
 import useLocalStorage from './useLocalStorage';
 import {v4 as uuidV4} from 'uuid';  
+import MyNoteList from './MyNoteList';
 
 
   export type Note = {
@@ -86,7 +87,7 @@ function App() {
 
         <Routes>
           
-            <Route path='/' element={ <h1>Home</h1> } />
+            <Route path='/' element={ <MyNoteList tagsAvailable ={ tags } />   } />
             <Route path='/new' element={ <NewNote onSubmit = {CreateNote} onAddTag = {AddTag} tagsAvailable = {tags} />} />
             
             <Route path='/:id'>
