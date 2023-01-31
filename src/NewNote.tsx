@@ -1,7 +1,14 @@
 import React from 'react'
+import { NoteData } from './App'
 import FormNote from './FormNote'
 
-const NewNote = () => {
+type NewNoteProps = {
+
+  onSubmit(data: NoteData): void
+
+}
+
+const NewNote = ({ onSubmit }: NewNoteProps) => {
 
     return (
 
@@ -9,7 +16,7 @@ const NewNote = () => {
 
         <h1 className='text-center'>New Note</h1>
         
-            <FormNote />
+            <FormNote onSubmit = {onSubmit} />
             
       </>
 

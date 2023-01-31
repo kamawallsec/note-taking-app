@@ -81,7 +81,7 @@ function App() {
         <Routes>
           
             <Route path='/' element={ <h1>Home</h1> } />
-            <Route path='/new' element={ <NewNote />} />
+            <Route path='/new' element={ <NewNote onSubmit = {CreateNote} />} />
             
             <Route path='/:id'>
 
