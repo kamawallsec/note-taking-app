@@ -61,7 +61,7 @@ const FormNote = ({ onSubmit, onAddTag, tagsAvailable }: NoteFormProps) => {
 
                         <Form.Label>Note Tags</Form.Label>
 
-                        <CreatableReactSelect className='style'
+                        <CreatableReactSelect 
                             onCreateOption={ label => {
                             const newTag = { id: uuidV4(), label }
                             onAddTag(newTag);
