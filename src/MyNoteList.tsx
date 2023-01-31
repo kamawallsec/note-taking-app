@@ -16,7 +16,6 @@ const MyNoteList = ({ tagsAvailable }:MyNoteListProps ) => {
 
 
     const [selectTags, setSelectTags] = useState<Tag[]>([]);
-    const [title, setTitle] = useState('');
 
 
   return (
