@@ -50,18 +50,18 @@ const FormNote = ({ onSubmit, onAddTag, tagsAvailable }: NoteFormProps) => {
                     <Form.Group controlId='title'>
 
                         <Form.Label>Note Title</Form.Label>
-                        <Form.Control required ref={titleRef} />        
+                        <Form.Control required ref={titleRef} className='bg-dark text-light' />        
 
                     </Form.Group>
                 </Col>
 
                 <Col>
                 
-                    <Form.Group controlId='tags'>
+                    <Form.Group controlId='tags' >
 
                         <Form.Label>Note Tags</Form.Label>
 
-                        <CreatableReactSelect 
+                        <CreatableReactSelect className='style'
                             onCreateOption={ label => {
                             const newTag = { id: uuidV4(), label }
                             onAddTag(newTag);
@@ -88,13 +88,13 @@ const FormNote = ({ onSubmit, onAddTag, tagsAvailable }: NoteFormProps) => {
             <Form.Group controlId='markdown'>
 
                 <Form.Label>Note Body</Form.Label>
-                <Form.Control required as = 'textarea' rows={15} ref={markdownRef} />
+                <Form.Control required as = 'textarea' rows={15} ref={markdownRef} className='bg-dark text-light' />
 
             </Form.Group>
 
 
             <Stack direction='horizontal' gap={4} className='justify-content-end'>
-                <Button type='submit' variant='info'>Save</Button>
+                <Button type='submit' variant='warning'>Save</Button>
 
                 <Link to='..'>
                     <Button type='button' variant='light'>Cancel</Button>
