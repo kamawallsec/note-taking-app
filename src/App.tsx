@@ -73,6 +73,12 @@ function App() {
 
   }
 
+  const AddTag = function(tag: Tag) {
+
+    setTags( previousTags => [...previousTags, tag]);
+
+  }
+
 
   return (
   
@@ -81,7 +87,7 @@ function App() {
         <Routes>
           
             <Route path='/' element={ <h1>Home</h1> } />
-            <Route path='/new' element={ <NewNote onSubmit = {CreateNote} />} />
+            <Route path='/new' element={ <NewNote onSubmit = {CreateNote} onAddTag = {AddTag} tagsAvailable = {tags} />} />
             
             <Route path='/:id'>
 
