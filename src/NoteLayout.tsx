@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Outlet, useParams } from 'react-router-dom'
+import { Navigate, Outlet, useOutletContext, useParams } from 'react-router-dom'
 import { Note } from './App'
 
 
@@ -21,3 +21,9 @@ const NoteLayout = ({ notes }:NoteLayoutProps ) => {
 }
 
 export default NoteLayout
+
+const UseNote = function() {
+
+    return useOutletContext<Note>();
+
+}
