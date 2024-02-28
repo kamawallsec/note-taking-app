@@ -1,29 +1,29 @@
-import React from 'react'
-import { Navigate, Outlet, useOutletContext, useParams } from 'react-router-dom'
-import { Note } from './App'
-
+import React from "react";
+import {
+  Navigate,
+  Outlet,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
+import { Note } from "./App";
 
 type NoteLayoutProps = {
+  notes: Note[];
+};
 
-    notes: Note[]
+const NoteLayout = ({ notes }: NoteLayoutProps) => {
+  const { id } = useParams();
+  const note = notes.find((n) => n.id === id);
 
-}
+  if (note === null) {
+    return <Navigate to="/" replace />;
+  }
 
-const NoteLayout = ({ notes }:NoteLayoutProps ) => {
+  return <Outlet context={note} />;
+};
 
+export default NoteLayout;
 
-    const {id} = useParams();
-    const note = notes.find( n => n.id === id);
-
-    if (note === null) return <Navigate to='/' replace />;
-
-    return <Outlet context={notes} />;
-}
-
-export default NoteLayout
-
-const UseNote = function() {
-
-    return useOutletContext<Note>();
-
-}
+export const useNote = function () {
+  return useOutletContext<Note>();
+};
