@@ -23,15 +23,24 @@ type SimpNote = {
 type MyNoteListProps = {
   tagsAvailable: Tag[];
   notes: SimpNote[];
+  onUpdateTag: (id: string, label: string) => void;
+  onDeleteTag: (id: string) => void;
 };
 
 type EditTagsModalProps = {
   tagsAvailable: Tag[];
   show: boolean;
   handleClose: () => void;
+  onUpdateTag: (id: string, label: string) => void;
+  onDeleteTag: (id: string) => void;
 };
 
-const MyNoteList = ({ tagsAvailable, notes }: MyNoteListProps) => {
+const MyNoteList = ({
+  tagsAvailable,
+  notes,
+  onUpdateTag,
+  onDeleteTag,
+}: MyNoteListProps) => {
   const [selectTags, setSelectTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
   const [isEditTagsModalOpen, setIsEditTagsModalOpen] = useState(false);
@@ -128,6 +137,8 @@ const MyNoteList = ({ tagsAvailable, notes }: MyNoteListProps) => {
         tagsAvailable={tagsAvailable}
         show={isEditTagsModalOpen}
         handleClose={() => setIsEditTagsModalOpen(false)}
+        onUpdateTag={onUpdateTag}
+        onDeleteTag={onDeleteTag}
       />
     </>
   );
@@ -171,6 +182,8 @@ const EditTagsModal = function ({
   tagsAvailable,
   show,
   handleClose,
+  onUpdateTag,
+  onDeleteTag,
 }: EditTagsModalProps) {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -184,11 +197,20 @@ const EditTagsModal = function ({
             {tagsAvailable.map((tag) => (
               <Row key={tag.id}>
                 <Col>
-                  <Form.Control type="text" value={tag.label} />
+                  <Form.Control
+                    type="text"
+                    value={tag.label}
+                    onChange={(e) => onUpdateTag(tag.id, e.target.value)}
+                  />
                 </Col>
 
                 <Col xs="auto">
-                  <Button variant="outline-danger">&times;</Button>
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => onDeleteTag(tag.id)}
+                  >
+                    &times;
+                  </Button>
                 </Col>
               </Row>
             ))}
